@@ -1,16 +1,15 @@
+td,th{
+  border: 1px solid;
+}
+
 table {
-    border: 2px solid rgb(200,200,200);
-    letter-spacing: 1px;
-  }
+  border-collapse: collapse;
+  font-family: system-ui;
+  margin: 0;
+  padding: 0;
+}
 
-  #user-table > tbody > .date-row
-  {
-    background-color: rgb(222, 31, 31) !important;
-    font-weight: bold;
-    text-align: center;
-  }
-
-  #inputTime
-  {
-    width: 500px;
-  }
+.date-row
+{
+  text-align: center;
+}

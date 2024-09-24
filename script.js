@@ -36,10 +36,6 @@ function addMinutes(e)
         }
     };
 
-    const options = {
-        strict: true
-    };
-
     const errors = validate({ inputTime }, constraints);
 
     if (errors) {
@@ -68,19 +64,30 @@ function addMinutes(e)
         minutes: inputTime,
         taskNumber: taskCount
     };
+
+    
    
     minutes.push(newEntry);
 
+    
+
+    document.querySelector('#inputTime').value = ""
+
+    
     updateTable();
     localStorage.setItem('minutes', JSON.stringify(minutes));
+
+
 }
 
 function updateTable() 
 {
     const userTable = document.querySelector('#user-table tbody');
+    const tableFoot = document.querySelector('#user-table tfoot')
 
     let previousDate = null;
     userTable.innerHTML = '';
+    tableFoot.innerHTML = '';
     let total = 0;
 
     minutes.forEach(entry => {
@@ -105,19 +112,37 @@ function updateTable()
         const newRow = document.createElement('tr');   
         const taskNumberCell = document.createElement('td');
         const minutesCell = document.createElement('td');
-        const totalCell = document.createElement('td');
+ 
 
         console.log(entry.taskNumber);
         
         taskNumberCell.textContent = entry.taskNumber;
         minutesCell.textContent = entry.minutes;
-        totalCell.textContent = total;
+     //   totalCell.textContent = total;
 
         newRow.appendChild(taskNumberCell);
         newRow.appendChild(minutesCell);
-        newRow.appendChild(totalCell);
+     //   newRow.appendChild(totalCell);
         userTable.appendChild(newRow);
+
+  
+
+        
     });
+
+    const totalRow = document.createElement('tr');
+    const totalCell = document.createElement('td');
+
+    totalCell.textContent = "Total: " + total;
+
+    totalCell.setAttribute('colspan', 3);
+
+
+
+    totalRow.appendChild(totalCell);
+    tableFoot.appendChild(totalRow);
+
+
 
 }
 
