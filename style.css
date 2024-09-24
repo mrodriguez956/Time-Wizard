@@ -1,0 +1,16 @@
+table {
+    border: 2px solid rgb(200,200,200);
+    letter-spacing: 1px;
+  }
+
+  #user-table > tbody > .date-row
+  {
+    background-color: rgb(222, 31, 31) !important;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  #inputTime
+  {
+    width: 500px;
+  }
