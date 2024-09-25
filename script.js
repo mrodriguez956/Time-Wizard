@@ -74,7 +74,9 @@ function updateTable()
 {
     const userTable = document.querySelector('#user-table tbody'); //grab table body where user data will be displayed
     const tableFoot = document.querySelector('#user-table tfoot'); //grab table foot where total minutes will be displayed
-    const dateCell = document.createElement('td');
+    
+
+
 
     let previousDate = null; //re-initialize variable previousDate when updateTable() is ran
     userTable.innerHTML = ''; //clear the table body
@@ -87,15 +89,17 @@ function updateTable()
             {
                 const dateRow = document.createElement('tr');
                 
-                dateRow.classList.add('date-row','table-secondary');
+                dateRow.classList.add('date-row','table-secondary'); //add classes to the dateRow table row element
                 
-                dateCell.innerHTML = "<button class='btn toggle-list' type='button' data-bs-toggle='collapse' data-bs-target='#collapseExample'>" + entry.date + "</button>"
+
+                const dateCell = document.createElement('td');
+                dateCell.innerHTML = "<button class='btn toggle-list' type='button'>" + entry.date + "</button>" //create clickable table cell that contains date of entries
                 //dateCell.textContent = entry.date;
-                dateRow.appendChild(dateCell);
-                userTable.appendChild(dateRow);
-                dateCell.setAttribute('colspan', 3);
+                dateRow.appendChild(dateCell); // add date cell to the dateRow
+                userTable.appendChild(dateRow); //add date Row to table 
+                dateCell.setAttribute('colspan', 3); //make the date cell span across the width of the table
     
-                previousDate = entry.date;
+                previousDate = entry.date; //store date of current entry for future comparison
 
             }
 
@@ -160,14 +164,3 @@ function clearLocalStorage() {
     localStorage.clear();
     window.location.reload();
   }
-
-function hideTable(displayed) 
-{
- if(displayed.style.display === "none") {
-    displayed.style.display = "block";
- } 
- else {
-    displayed.style.display = "none";
- }
-    
-}
