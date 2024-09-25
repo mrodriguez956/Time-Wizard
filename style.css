@@ -1,15 +1,25 @@
+
+
+
 td,th{
   border: 1px solid;
+  padding: 20px;
 }
 
-table {
-  border-collapse: collapse;
-  font-family: system-ui;
-  margin: 0;
-  padding: 0;
-}
 
 .date-row
 {
   text-align: center;
+}
+
+.total-row
+{
+  text-align: right;
+  width: 20%;
+}
+
+
+.style-table
+{
+  width: 400px;
 }

@@ -15,19 +15,19 @@
 
    
     <h1 class="py-5"> TIME WIZARD ⏰🪄 </h1>
-    <form class="add-time">
-        <input type="number" id="inputTime" class="" name="minutes" placeholder="Time (minutes)">
-        <input type="submit" value="+ Add Time" id="addButton">
+    <form class="time-form">
+        <input type="number" class="input-field" name="minutes" placeholder="Time (minutes)">
+        <input type="submit" value="+ Add Time" class="add-button">
     </form>
 </div>
     
-    <div class="w-50 mx-auto my-5">
+    <div class="style-table mx-auto my-5">
         <input type="submit" value="Clear 🗑️" id="clear-button" class="clear-button mb-3">
     <table class="table" id="user-table">
         <thead>
-            <tr class="">
-                <th class="w-25"> Task # </th>
-                <th class="w-25"> Time Spent </th>
+            <tr>
+                <th class="task-num w-50"> Task # </th>
+                <th class="time-spent"> Time Spent </th>
             </tr>
         </thead>
         <tbody>
