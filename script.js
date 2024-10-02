@@ -1,6 +1,7 @@
 const addTime =  document.querySelector('.time-form'); 
 const addButton = document.querySelector('.add-button');
-const clearButton = document.querySelector('#clear-button');
+//const clearButton = document.querySelector('#clear-button');
+const editButton = document.querySelector('#edit-button');
 const inputField = document.querySelector('.input-field');
 const minutes = JSON.parse(localStorage.getItem('minutes')) || []; //grab object array from localStorage OR create an empty array
 
@@ -8,10 +9,13 @@ const minutes = JSON.parse(localStorage.getItem('minutes')) || []; //grab object
 let taskCount = minutes.length; //calculate task count by length of minutes array
 let dateCount = 0;
 
-//console.log(taskCount);
 addButton.addEventListener('click', addMinutes); //run function addMinutes on button click
-clearButton.addEventListener('click', clearLocalStorage); //clear localStorage when button is pressed
+//clearButton.addEventListener('click', clearLocalStorage); //clear localStorage when button is pressed
+editButton.addEventListener('click', toggleEditMode);
+
 document.querySelector('#user-table').addEventListener('click', rowCheckbox);
+
+
 window.onload = function() {
     updateTable(); //ensure latest items are pulled from localStorage and displayed on load
     dateToggle();
@@ -120,7 +124,7 @@ function updateTable()
         
         newRow.innerHTML = `
         <td class='w-50'>
-        <input type='checkbox'> ${entry.taskNumber}</td>
+        <input type='checkbox' class='d-none'> ${entry.taskNumber}</td>
         <td class=''> ${entry.minutes} </td>`; 
 
         userTable.appendChild(newRow);
@@ -228,3 +232,10 @@ function deleteSelected()
     dateToggle();
 }
 
+function toggleEditMode()
+{   
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(checkbox => {
+        checkbox.classList.toggle('d-none');
+    });
+}
