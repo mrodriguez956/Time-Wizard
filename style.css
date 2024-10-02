@@ -23,3 +23,7 @@ td,th{
 {
   width: 400px;
 }
+
+.row-select.selected {
+  background-color: #e0e0e0; /* or any color you prefer */
+}

@@ -2,7 +2,6 @@ const addTime =  document.querySelector('.time-form');
 const addButton = document.querySelector('.add-button');
 const clearButton = document.querySelector('#clear-button');
 const inputField = document.querySelector('.input-field');
-
 const minutes = JSON.parse(localStorage.getItem('minutes')) || []; //grab object array from localStorage OR create an empty array
 
 
@@ -12,7 +11,7 @@ let dateCount = 0;
 //console.log(taskCount);
 addButton.addEventListener('click', addMinutes); //run function addMinutes on button click
 clearButton.addEventListener('click', clearLocalStorage); //clear localStorage when button is pressed
-
+document.querySelector('#user-table').addEventListener('click', rowCheckbox);
 window.onload = function() {
     updateTable(); //ensure latest items are pulled from localStorage and displayed on load
     dateToggle();
@@ -86,6 +85,7 @@ function updateTable()
     userTable.innerHTML = ''; //clear the table body
     tableFoot.innerHTML = ''; //clear table footer
     let total = 0; //reset total
+    
 
     minutes.forEach(entry => { //loop through minutes array using each object as an entry
 
@@ -114,12 +114,14 @@ function updateTable()
 
     
         const newRow = document.createElement('tr');
-        newRow.classList.add(`table-data-${dateCount}`);
-        
+        newRow.classList.add(`table-data-${dateCount}`, `row-select`);
+        newRow.setAttribute('data-id', entry.taskNumber);
        
         
-        newRow.innerHTML = "<td class='w-50'>" + entry.taskNumber + "</td><td class=''>" + 
-        entry.minutes + "</td>"; 
+        newRow.innerHTML = `
+        <td class='w-50'>
+        <input type='checkbox'> ${entry.taskNumber}</td>
+        <td class=''> ${entry.minutes} </td>`; 
 
         userTable.appendChild(newRow);
         
@@ -180,3 +182,49 @@ function dateToggle() {
 
     }
 }
+
+function rowCheckbox(e) {
+    const row = e.target.closest('.row-select');
+    if (row) {
+        const checkbox = row.querySelector('input[type="checkbox"]');
+        
+        // If the click is directly on the checkbox, let the default behavior happen
+        if (e.target === checkbox) {
+            console.log("target: " + e.target);
+            return;
+        }
+        
+        // For clicks on other parts of the row, prevent default and toggle manually
+        e.preventDefault();
+        checkbox.checked = !checkbox.checked;
+        
+        // Toggle a class on the row to show it's selected
+        row.classList.toggle('selected', checkbox.checked);
+        
+        console.log("target: " + e.target);
+    }
+}
+
+function deleteSelected()
+{
+    const selectedRows = document.querySelectorAll('.selected');
+    selectedRows.forEach(row => {
+        const id = row.dataset.id;
+        console.log("id: " + id);
+
+        const matchingIndex = minutes.findIndex(entry => entry.taskNumber == id);
+        console.log("matchingIndex: " + matchingIndex);
+
+        if (matchingIndex !== -1)
+        {
+            minutes.splice(matchingIndex, 1);
+                
+        }
+    });
+
+    
+    localStorage.setItem('minutes', JSON.stringify(minutes));
+    updateTable();
+    dateToggle();
+}
+
