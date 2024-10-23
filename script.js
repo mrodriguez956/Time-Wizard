@@ -98,11 +98,11 @@ function updateTable()
                 dateCount += 1;
                 const dateRow = document.createElement('tr');
                 
-                dateRow.classList.add('date-row','table-secondary'); //add classes to the dateRow table row element
+                dateRow.classList.add('date-row'); //add classes to the dateRow table row element
                 
 
                 const dateCell = document.createElement('td');
-                dateCell.innerHTML = `<button class='btn toggle-list-${dateCount}' type='button'> ${entry.date} </button>`; //create clickable table cell that contains date of entries
+                dateCell.innerHTML = `<button class='btn toggle-list-${dateCount} table-btn' type='button'> ${entry.date} </button>`; //create clickable table cell that contains date of entries
                 //dateCell.textContent = entry.date;
                 dateRow.appendChild(dateCell); // add date cell to the dateRow
                 userTable.appendChild(dateRow); //add date Row to table 
@@ -121,7 +121,7 @@ function updateTable()
 
     
         const newRow = document.createElement('tr');
-        newRow.classList.add(`table-data-${dateCount}`, `row-select`);
+        newRow.classList.add(`table-data-${dateCount}`, `row-select`, `color-cells`);
         newRow.setAttribute('data-id', taskCount);
        
         
@@ -136,15 +136,19 @@ function updateTable()
     
 
     const totalRow = document.createElement('tr');
-    const totalCell = document.createElement('td');
+    const totalTimeCell = document.createElement('td');
+    const totalTaskCell = document.createElement('td');
 
-    totalCell.textContent = `Total: ${total}`;
-
-    totalCell.setAttribute('colspan', 3);
-
+    totalTaskCell.textContent =  `${taskCount}           TSK`;
+    totalTimeCell.textContent = `${total}           MIN`;
 
 
-    totalRow.appendChild(totalCell);
+    //totalCell.setAttribute('colspan', 3);
+
+
+    totalRow.appendChild(totalTaskCell);
+    totalRow.appendChild(totalTimeCell);
+
     tableFoot.appendChild(totalRow);
 
     tableFoot.classList.add("total-row");

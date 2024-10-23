@@ -15,32 +15,37 @@
 
 
    
-    <h1 class="py-5"> TIME WIZARD ⏰🪄 </h1>
+    <h1 class="py-5 display-1">⏰Time Wizard🪄</h1>
     <form class="time-form">
         <input type="number" class="input-field" name="minutes" placeholder="Time (minutes)">
         <input type="submit" value="+ Add Time" class="add-button">
     </form>
 </div>
+<div class="container">
+    <div class="row justify-content-center my-5">
+        
+        <div class="col-md-8">
+            <div class="d-flex mb-3">
+                <button type="button" class="btn btn-primary me-2" id="edit-button"><i class="bi bi-pencil-fill"></i></button>
+                <button type="button" class="btn btn-primary d-none" id="clear-button"><i class="bi bi-trash"></i></button>
 
-    <div class="style-table mx-auto my-5">
-        <button type="button" class="btn btn-primary" id="edit-button"><i class="bi bi-pencil-fill"></i></button>
-        <button type="button" class="btn btn-primary d-none" id="clear-button"><i class="bi bi-trash"></i></button>
-    <table class="table" id="user-table">
-        <thead>
-            <tr>
-                <th class="task-num w-50"> Task # </th>
-                <th class="time-spent"> Time Spent </th>
-                
-            </tr>
-        </thead>
-        <tbody>
-
-        </tbody>
-        <tfoot>
-
-        </tfoot>
-    </table>
+            </div>
+            <table class="w-100" id="user-table">
+                <thead>
+                    <tr>
+                        <th class="task-num"> Task # </th>
+                        <th class="time-spent w-50"> Time Spent </th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+                <tfoot>
+                </tfoot>
+            </table>
+        </div>
     </div>
+</div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="validate.min.js"></script>
     <script src="script.js"></script>
