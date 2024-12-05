@@ -1,3 +1,5 @@
+const supabasePublic = supabase.createClient('https://gaahboubfkdcqjlvmppz.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdhYWhib3ViZmtkY3FqbHZtcHB6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzMzNDIzNzgsImV4cCI6MjA0ODkxODM3OH0.8FDHSwYuk05UbqT9gAHhjWUkemviFMaLIH8aTMiUizs');
+
 const addTime =  document.querySelector('.time-form'); 
 const addButton = document.querySelector('.add-button');
 const deleteButton = document.querySelector('#clear-button');
@@ -16,9 +18,25 @@ editButton.addEventListener('click', toggleEditMode);
 document.querySelector('#user-table').addEventListener('click', rowCheckbox);
 
 
+
+async function fetchData() {
+
+    const { data, error } = await supabasePublic
+    .from('task_sheet')
+    .select()
+    .eq('Task_Number', 1);
+  
+        if (error) {
+            console.error('Error fetching data:', error);
+          } else {
+            console.log('Fetched data:', data[0]);
+          }  
+}
+
 window.onload = function() {
     updateTable(); //ensure latest items are pulled from localStorage and displayed on load
     dateToggle();
+    fetchData();
   };
 
 function validateTime(inputTime)
