@@ -163,7 +163,7 @@ function saveDate()
 {
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const date = new Date();
-    const formattedDate = `${days[date.getDay()]} | ${date.getMonth()}-${date.getDate()}-${date.getFullYear()}`
+    const formattedDate = `${days[date.getDay()]} | ${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`
    
    return formattedDate;
 
